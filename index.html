@@ -1,0 +1,354 @@
+<title>Sites para Comércio Local</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Sites simples e ficha do Google Maps para negócios locais em Portugal. Preço fechado, sem mensalidade obrigatória, pronto em dias.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Schibsted+Grotesk:wght@400;500;700;800&display=swap">
+
+<style>
+/* ------------------------------------------------------------------
+   Paleta: tinta quase preta, papel quente, e UM verde — o mesmo verde
+   do "aberto agora" do Google Maps, que é literalmente o que se vende
+   aqui. O acento não é decoração, é o assunto.
+   ------------------------------------------------------------------ */
+:root{
+  --tinta:#11151A; --papel:#FBFAF6; --papel2:#F1EEE6; --caixa:#FFFFFF;
+  --fraco:#666E77; --linha:#E1DDD2; --verde:#17795A; --verde-f:#E4F1EC;
+  --alerta:#A8501B; --alerta-f:#FBEDE3;
+  color-scheme:light dark;
+}
+@media(prefers-color-scheme:dark){:root:not([data-theme=light]){
+  --tinta:#F0EEE8; --papel:#0E1114; --papel2:#151A1E; --caixa:#171D21;
+  --fraco:#98A2AB; --linha:#252D33; --verde:#5FC79E; --verde-f:#12261F;
+  --alerta:#E09B62; --alerta-f:#2A1D12;}}
+:root[data-theme=dark]{--tinta:#F0EEE8; --papel:#0E1114; --papel2:#151A1E; --caixa:#171D21;
+  --fraco:#98A2AB; --linha:#252D33; --verde:#5FC79E; --verde-f:#12261F;
+  --alerta:#E09B62; --alerta-f:#2A1D12;}
+
+*{box-sizing:border-box}
+body{margin:0;background:var(--papel);color:var(--tinta);
+  font-family:"Schibsted Grotesk",system-ui,sans-serif;font-size:17px;line-height:1.6;
+  -webkit-font-smoothing:antialiased}
+h1,h2,h3{margin:0;line-height:1.1;text-wrap:balance;font-weight:800;letter-spacing:-.025em}
+.serif{font-family:"Instrument Serif",Georgia,serif;font-weight:400;letter-spacing:-.01em}
+a{color:inherit}
+.env{max-width:1000px;margin:0 auto;padding:0 22px}
+.num{font-variant-numeric:tabular-nums}
+
+/* ---------- barra ---------- */
+.barra{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--papel) 90%,transparent);
+  backdrop-filter:blur(10px);border-bottom:1px solid var(--linha)}
+.barra .env{display:flex;align-items:center;gap:16px;height:62px}
+.marca{font-weight:800;font-size:17px;text-decoration:none;letter-spacing:-.02em}
+.marca span{color:var(--verde)}
+.barra .zap{margin-left:auto;background:var(--verde);color:#fff;padding:9px 16px;border-radius:8px;
+  text-decoration:none;font-weight:700;font-size:15px;white-space:nowrap}
+.barra .zap:hover{opacity:.9}
+
+/* ---------- herói ---------- */
+.heroi{padding:66px 0 54px}
+.et{display:inline-flex;align-items:center;gap:8px;background:var(--verde-f);color:var(--verde);
+  padding:5px 12px;border-radius:999px;font-size:13.5px;font-weight:700;margin-bottom:22px}
+.et::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--verde)}
+.heroi h1{font-size:clamp(36px,5.6vw,58px)}
+.heroi h1 i{font-style:italic;color:var(--verde)}
+.heroi .lead{font-size:20px;color:var(--fraco);margin:22px 0 30px;max-width:52ch}
+.btl{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.bt{display:inline-flex;align-items:center;gap:9px;padding:15px 26px;border-radius:10px;
+  text-decoration:none;font-weight:700;font-size:16.5px;border:1.5px solid transparent}
+.bt-1{background:var(--tinta);color:var(--papel)}
+.bt-1:hover{background:var(--verde);color:#fff}
+.bt-2{border-color:var(--linha);background:var(--caixa)}
+.bt-2:hover{border-color:var(--tinta)}
+.mini{font-size:14.5px;color:var(--fraco)}
+
+/* ---------- secções ---------- */
+section{padding:58px 0;border-top:1px solid var(--linha)}
+.alt{background:var(--papel2)}
+h2{font-size:clamp(27px,3.6vw,36px)}
+.sub{color:var(--fraco);margin:12px 0 0;max-width:58ch;font-size:17.5px}
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:34px}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:34px}
+@media(max-width:820px){.g3,.g2{grid-template-columns:1fr}}
+.cx{background:var(--caixa);border:1px solid var(--linha);border-radius:13px;padding:26px 24px}
+.cx h3{font-size:19px;margin-bottom:9px}
+.cx p{margin:0;color:var(--fraco);font-size:16px}
+
+/* ---------- problema ---------- */
+.prob{background:var(--alerta-f);border:1px solid color-mix(in srgb,var(--alerta) 35%,transparent);
+  border-radius:13px;padding:26px 24px}
+.prob h3{color:var(--alerta);font-size:19px;margin-bottom:9px}
+.prob p{margin:0;color:var(--tinta);font-size:16px;opacity:.85}
+.lista-x{list-style:none;padding:0;margin:22px 0 0;display:grid;gap:11px}
+.lista-x li{display:flex;gap:11px;align-items:flex-start;font-size:16.5px}
+.lista-x li::before{content:"→";color:var(--verde);font-weight:800;flex:none}
+
+/* ---------- preços ---------- */
+.precos{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:34px;align-items:start}
+@media(max-width:820px){.precos{grid-template-columns:1fr}}
+.pl{background:var(--caixa);border:1px solid var(--linha);border-radius:14px;padding:28px 24px;position:relative}
+.pl.top{border:2px solid var(--verde);box-shadow:0 6px 24px color-mix(in srgb,var(--verde) 14%,transparent)}
+.pl .fita{position:absolute;top:-12px;left:24px;background:var(--verde);color:#fff;
+  padding:4px 12px;border-radius:999px;font-size:12.5px;font-weight:800;letter-spacing:.03em}
+.pl h3{font-size:18px;color:var(--fraco);font-weight:700;letter-spacing:0}
+.pl .v{font-family:"Instrument Serif",Georgia,serif;font-size:54px;font-weight:400;
+  letter-spacing:-.03em;margin:10px 0 2px;line-height:1;display:flex;align-items:baseline;gap:7px}
+.pl .v small{font-family:"Schibsted Grotesk",sans-serif;font-size:15.5px;font-weight:700;
+  color:var(--fraco);letter-spacing:0;white-space:nowrap}
+.pl .q{color:var(--fraco);font-size:15px;margin:0 0 18px}
+.pl ul{list-style:none;padding:0;margin:0 0 22px;display:grid;gap:9px}
+.pl li{display:flex;gap:9px;font-size:15.5px;align-items:flex-start}
+.pl li::before{content:"✓";color:var(--verde);font-weight:800;flex:none;line-height:1.5}
+.pl .bt{width:100%;justify-content:center;padding:13px}
+
+/* ---------- passos ---------- */
+.passos{counter-reset:p;display:grid;gap:14px;margin-top:34px}
+.passo{display:grid;grid-template-columns:auto 1fr;gap:18px;align-items:start;
+  background:var(--caixa);border:1px solid var(--linha);border-radius:13px;padding:22px 24px}
+.passo::before{counter-increment:p;content:counter(p);font-family:"Instrument Serif",serif;
+  font-size:36px;color:var(--verde);line-height:1;min-width:34px}
+.passo h3{font-size:18px;margin-bottom:5px}
+.passo p{margin:0;color:var(--fraco);font-size:16px}
+
+/* ---------- exemplo ---------- */
+.demo{border:1px solid var(--linha);border-radius:14px;overflow:hidden;background:var(--caixa)}
+.demo .topo{display:flex;align-items:center;gap:7px;padding:11px 14px;border-bottom:1px solid var(--linha);
+  background:var(--papel2)}
+.demo .topo i{width:11px;height:11px;border-radius:50%;background:var(--linha);display:block}
+.demo .topo b{margin-left:8px;font-size:13.5px;color:var(--fraco);font-weight:500;
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.demo iframe{width:100%;height:460px;border:0;display:block;background:var(--papel)}
+
+/* ---------- perguntas ---------- */
+details{background:var(--caixa);border:1px solid var(--linha);border-radius:12px;padding:0;margin-top:11px}
+summary{cursor:pointer;padding:17px 22px;font-weight:700;font-size:16.5px;list-style:none;
+  display:flex;justify-content:space-between;gap:14px;align-items:center}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";color:var(--verde);font-weight:800;font-size:21px;flex:none}
+details[open] summary::after{content:"–"}
+details p{margin:0;padding:0 22px 19px;color:var(--fraco);font-size:16px}
+
+/* ---------- contacto ---------- */
+.fim{background:var(--tinta);color:var(--papel);border-radius:0}
+.fim h2,.fim .sub{color:var(--papel)}
+.fim .sub{opacity:.75}
+.fim .btl{margin-top:28px}
+.fim .bt-1{background:var(--verde);color:#fff}
+.fim .bt-2{border-color:color-mix(in srgb,var(--papel) 30%,transparent);color:var(--papel);background:transparent}
+.fim .bt-2:hover{border-color:var(--papel)}
+footer{padding:26px 0 40px;color:var(--fraco);font-size:14px}
+@media(prefers-reduced-motion:no-preference){.bt,.zap,summary{transition:all .16s ease}}
+</style>
+
+<div class="barra">
+  <div class="env">
+    <a class="marca" href="#topo">Sites para o <span>comércio local</span></a>
+    <a class="zap" id="zap-topo" href="#contacto">Pedir orçamento</a>
+  </div>
+</div>
+
+<header class="heroi" id="topo">
+  <div class="env">
+    <span class="et">Disponível para novos trabalhos</span>
+    <h1>Metade do comércio da sua terra <i>não aparece</i> no Google.</h1>
+    <p class="lead">Faço sites simples e trato da ficha do Google Maps, para quem procura
+      "perto de mim" encontrar a sua casa. Preço fechado, sem mensalidade obrigatória,
+      pronto em dias.</p>
+    <div class="btl">
+      <a class="bt bt-1" href="#precos">Ver preços</a>
+      <a class="bt bt-2" href="#exemplo">Ver um exemplo real</a>
+    </div>
+    <p class="mini" style="margin-top:18px">Sem contratos. Se não gostar do resultado, não paga.</p>
+  </div>
+</header>
+
+<section class="alt">
+  <div class="env">
+    <h2>O que acontece hoje a quem não tem site</h2>
+    <p class="sub">Não é uma questão de moda. É de quem aparece quando o cliente procura.</p>
+    <div class="g2">
+      <div class="prob">
+        <h3>Sem site e sem ficha do Google</h3>
+        <p>Quem procura "pastelaria perto de mim" no telemóvel vê os concorrentes.
+          O horário e o telefone não aparecem. Quem não conhece a casa não a encontra.</p>
+      </div>
+      <div class="cx">
+        <h3>Com as duas coisas feitas</h3>
+        <p>Aparece no mapa com o telefone, o horário e as fotografias. Um toque e ligam.
+          Um toque e têm a direção. É esse o caminho que traz gente à porta.</p>
+      </div>
+    </div>
+    <ul class="lista-x">
+      <li>Uma página com os seus contactos, horário, especialidades e fotografias.</li>
+      <li>A ficha do Google Maps criada e configurada, com horário e categoria certos.</li>
+      <li>Endereço próprio, se quiser: <b>onomedasuacasa.pt</b>.</li>
+      <li>Funciona no telemóvel, que é onde 7 em cada 10 pessoas vão ver.</li>
+    </ul>
+  </div>
+</section>
+
+<section id="exemplo">
+  <div class="env">
+    <h2>Um exemplo, feito de verdade</h2>
+    <p class="sub">Café Pastelaria Gloriana, em Salvaterra de Magos. Tinha 1 200 seguidores
+      no Facebook e nenhum site. Está aqui em baixo, a funcionar.</p>
+    <div class="demo" style="margin-top:30px">
+      <div class="topo"><i></i><i></i><i></i><b id="url-demo">pastelariagloriana</b></div>
+      <iframe id="demo-frame" title="Exemplo: site do Café Pastelaria Gloriana" loading="lazy"></iframe>
+    </div>
+    <p class="mini" style="margin-top:14px">
+      <a id="link-demo" href="#" target="_blank" rel="noopener"><b>Abrir o exemplo em página inteira →</b></a>
+    </p>
+  </div>
+</section>
+
+<section class="alt" id="precos">
+  <div class="env">
+    <h2>Preços</h2>
+    <p class="sub">Valor fechado, dito à partida. Sem surpresas e sem letras pequenas.</p>
+    <div class="precos">
+      <div class="pl">
+        <h3>Só o site</h3>
+        <p class="v num"><span data-cfg="p1">290</span> <small>€</small></p>
+        <p class="q">uma vez, sem mensalidade</p>
+        <ul>
+          <li>Uma página completa</li>
+          <li>Contactos, horário e especialidades</li>
+          <li>As suas fotografias</li>
+          <li>Feito para telemóvel</li>
+          <li>Pronto em 2 a 3 dias</li>
+        </ul>
+        <a class="bt bt-2 zap-link" href="#contacto">Quero este</a>
+      </div>
+      <div class="pl top">
+        <span class="fita">O que recomendo</span>
+        <h3>Site + Google</h3>
+        <p class="v num"><span data-cfg="p2">450</span> <small>€</small></p>
+        <p class="q">uma vez, sem mensalidade</p>
+        <ul>
+          <li>Tudo o que está ao lado</li>
+          <li><span><b>Ficha do Google Maps</b> criada e configurada</span></li>
+          <li>Horário, categoria e fotografias no Google</li>
+          <li>Ligação entre o site e o Google</li>
+          <li>Explico-lhe como responder às avaliações</li>
+        </ul>
+        <a class="bt bt-1 zap-link" href="#contacto">Quero este</a>
+      </div>
+      <div class="pl">
+        <h3>Manutenção</h3>
+        <p class="v num"><span data-cfg="p3">12</span> <small>€/mês</small></p>
+        <p class="q">opcional, cancela quando quiser</p>
+        <ul>
+          <li>Mudanças de horário e de preços</li>
+          <li>Fotografias novas quando quiser</li>
+          <li>Publicações no Google</li>
+          <li>Respondo no próprio dia</li>
+        </ul>
+        <a class="bt bt-2 zap-link" href="#contacto">Falar sobre isto</a>
+      </div>
+    </div>
+    <p class="mini" style="margin-top:20px">O domínio próprio (<b>.pt</b>) custa à parte, cerca de
+      15 a 20 € por ano, pago diretamente por si a quem o vende. Não fico com nada disso.</p>
+  </div>
+</section>
+
+<section>
+  <div class="env">
+    <h2>Como funciona</h2>
+    <p class="sub">Do primeiro telefonema ao site no ar, sem o obrigar a perceber nada de informática.</p>
+    <div class="passos">
+      <div class="passo">
+        <div><h3>Falamos 10 minutos</h3>
+          <p>Por telefone ou aí na sua casa. Diz-me o que faz, o horário e o que quer mostrar.</p></div>
+      </div>
+      <div class="passo">
+        <div><h3>Faço e mostro-lhe</h3>
+          <p>Em dois ou três dias mando-lhe o link. Vê no telemóvel e diz o que quer mudar.</p></div>
+      </div>
+      <div class="passo">
+        <div><h3>Fica no ar e só depois paga</h3>
+          <p>Corrijo o que pedir, ponho no ar e trato do Google. Paga quando estiver a gostar.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="env">
+    <h2>Perguntas que me fazem sempre</h2>
+    <details><summary>Tenho de perceber alguma coisa de computadores?</summary>
+      <p>Nada. Manda-me as fotografias por WhatsApp e diz-me o horário. O resto é comigo.</p></details>
+    <details><summary>O site fica meu?</summary>
+      <p>Fica. O endereço, as fotografias e o conteúdo são seus. Se um dia quiser mudar de pessoa,
+        levo-lhe tudo o que é seu sem discussão.</p></details>
+    <details><summary>Sou obrigado a pagar todos os meses?</summary>
+      <p>Não. A manutenção é opcional. Sem ela o site continua no ar; só não faço as alterações por si.</p></details>
+    <details><summary>Já tenho página de Facebook. Chega?</summary>
+      <p>Ajuda, mas não chega. Quem procura no Google não vê o seu Facebook em primeiro lugar,
+        e muita gente já nem tem conta. A ficha do Google Maps é o que falta à maioria.</p></details>
+    <details><summary>Quanto tempo demora?</summary>
+      <p>Dois a três dias para o site. A ficha do Google pode demorar mais uma semana,
+        porque o Google costuma enviar um código de confirmação para a morada.</p></details>
+    <details><summary>E se não gostar?</summary>
+      <p>Não paga. Faço primeiro, mostro, e só cobro quando estiver a gostar do resultado.</p></details>
+  </div>
+</section>
+
+<section class="fim" id="contacto">
+  <div class="env">
+    <h2>Vamos falar 10 minutos?</h2>
+    <p class="sub">Diga-me o nome da sua casa e eu vou ver como está hoje no Google. Digo-lhe o que falta,
+      sem compromisso.</p>
+    <div class="btl">
+      <a class="bt bt-1" id="bt-tel" href="#">Ligar agora</a>
+      <a class="bt bt-2" id="bt-zap" href="#" target="_blank" rel="noopener">Falar por WhatsApp</a>
+      <a class="bt bt-2" id="bt-mail" href="#">Enviar email</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="env">
+    <span id="rodape">© <span id="ano">2026</span></span>
+  </div>
+</footer>
+
+<script>
+/* ==================================================================
+   ÚNICO SÍTIO A EDITAR. Muda estes valores e muda a página inteira.
+   ================================================================== */
+const CFG = {
+  nome:     "Nando Pereira",          // o teu nome, aparece no rodapé
+  telefone: "+351900000000",          // formato internacional, sem espaços
+  telVis:   "900 000 000",            // como queres que apareça escrito
+  email:    "pereiranando945@gmail.com",
+  exemplo:  "https://chroniquesdupasse30-coder.github.io/pastelariagloriana/",
+  p1: "290", p2: "450", p3: "12"      // os três preços
+};
+/* ================================================================== */
+
+document.querySelectorAll("[data-cfg]").forEach(el=>{
+  const v = CFG[el.dataset.cfg]; if(v) el.textContent = v;
+});
+const zapTxt = encodeURIComponent(
+  "Boa tarde. Vi a sua página e queria saber mais sobre o site para o meu negócio.");
+const zapUrl = "https://wa.me/" + CFG.telefone.replace(/\D/g,"") + "?text=" + zapTxt;
+const mailUrl = "mailto:" + CFG.email +
+  "?subject=" + encodeURIComponent("Queria um site para o meu negócio");
+
+document.getElementById("bt-tel").href  = "tel:" + CFG.telefone;
+document.getElementById("bt-tel").textContent = "Ligar: " + CFG.telVis;
+document.getElementById("bt-zap").href  = zapUrl;
+document.getElementById("bt-mail").href = mailUrl;
+document.getElementById("zap-topo").href = zapUrl;
+document.querySelectorAll(".zap-link").forEach(a=>{ a.href = zapUrl; a.target="_blank"; a.rel="noopener"; });
+
+const f = document.getElementById("demo-frame");
+f.src = CFG.exemplo;
+document.getElementById("link-demo").href = CFG.exemplo;
+document.getElementById("url-demo").textContent = CFG.exemplo.replace(/^https?:\/\//,"").replace(/\/$/,"");
+document.getElementById("ano").textContent = new Date().getFullYear();
+document.getElementById("rodape").innerHTML =
+  "© " + new Date().getFullYear() + " " + CFG.nome + " · " + CFG.telVis + " · " + CFG.email;
+</script>
