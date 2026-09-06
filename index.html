@@ -97,6 +97,21 @@ h2{font-size:clamp(27px,3.6vw,36px)}
 .pl .v small{font-family:"Schibsted Grotesk",sans-serif;font-size:15.5px;font-weight:700;
   color:var(--fraco);letter-spacing:0;white-space:nowrap}
 .pl .q{color:var(--fraco);font-size:15px;margin:0 0 18px}
+.pl .antes{font-family:"Schibsted Grotesk",sans-serif;font-size:22px;font-weight:700;
+  color:var(--fraco);text-decoration:line-through;text-decoration-thickness:2px;
+  align-self:center;opacity:.75}
+.faixa{background:var(--verde);color:#fff}
+.faixa .env{display:flex;flex-wrap:wrap;align-items:center;gap:10px 18px;padding-top:13px;padding-bottom:13px}
+.faixa b{font-weight:800;font-size:16.5px}
+.faixa span{font-size:15.5px;opacity:.92}
+.faixa .vagas{margin-left:auto;background:rgba(255,255,255,.18);padding:5px 13px;border-radius:999px;
+  font-weight:800;font-size:14.5px;white-space:nowrap}
+@media(max-width:700px){.faixa .vagas{margin-left:0}}
+.promo{background:var(--verde-f);border:1.5px solid var(--verde);border-radius:13px;
+  padding:22px 24px;margin-top:30px}
+.promo h3{color:var(--verde);font-size:19px;margin-bottom:8px}
+.promo p{margin:0;font-size:16.5px}
+.promo p + p{margin-top:9px;color:var(--fraco);font-size:15.5px}
 .pl ul{list-style:none;padding:0;margin:0 0 22px;display:grid;gap:9px}
 .pl li{display:flex;gap:9px;font-size:15.5px;align-items:flex-start}
 .pl li::before{content:"✓";color:var(--verde);font-weight:800;flex:none;line-height:1.5}
@@ -145,6 +160,15 @@ footer{padding:26px 0 40px;color:var(--fraco);font-size:14px}
   <div class="env">
     <a class="marca" href="#topo">Sites para o <span>comércio local</span></a>
     <a class="zap" id="zap-topo" href="#contacto">Pedir orçamento</a>
+  </div>
+</div>
+
+<div class="faixa" id="faixa-promo" hidden>
+  <div class="env">
+    <b>Estou a começar nesta zona.</b>
+    <span>Aos <b id="fp-n">10</b> primeiros clientes faço por <b id="fp-p">190&nbsp;€</b>
+      em vez de <span id="fp-a">290&nbsp;€</span>, com a ficha do Google incluída.</span>
+    <span class="vagas" id="fp-v">faltam 10</span>
   </div>
 </div>
 
@@ -207,10 +231,20 @@ footer{padding:26px 0 40px;color:var(--fraco);font-size:14px}
   <div class="env">
     <h2>Preços</h2>
     <p class="sub">Valor fechado, dito à partida. Sem surpresas e sem letras pequenas.</p>
+    <div class="promo" id="promo-bloco" hidden>
+      <h3>Promoção de arranque — os <span id="pb-n">10</span> primeiros</h3>
+      <p>Estou a começar nesta zona e preciso de trabalhos feitos para mostrar. Por isso, aos
+        <b><span id="pb-n2">10</span> primeiros clientes</b> faço o site por <b><span id="pb-p1">190</span>&nbsp;€</b>
+        e o site com a ficha do Google por <b><span id="pb-p2">290</span>&nbsp;€</b>.</p>
+      <p>Em troca peço só uma coisa: deixar-me mostrar o vosso site como exemplo do meu trabalho.
+        Não é um desconto de campanha que volta para o mês seguinte — quando os
+        <span id="pb-n3">10</span> estiverem feitos, o preço passa a ser o normal.
+        <b id="pb-restam">Faltam 10.</b></p>
+    </div>
     <div class="precos">
       <div class="pl">
         <h3>Só o site</h3>
-        <p class="v num"><span data-cfg="p1">290</span> <small>€</small></p>
+        <p class="v num"><span class="antes" data-antes="p1" hidden>290&nbsp;€</span><span data-cfg="p1">290</span> <small>€</small></p>
         <p class="q">uma vez, sem mensalidade</p>
         <ul>
           <li>Uma página completa</li>
@@ -224,7 +258,7 @@ footer{padding:26px 0 40px;color:var(--fraco);font-size:14px}
       <div class="pl top">
         <span class="fita">O que recomendo</span>
         <h3>Site + Google</h3>
-        <p class="v num"><span data-cfg="p2">450</span> <small>€</small></p>
+        <p class="v num"><span class="antes" data-antes="p2" hidden>450&nbsp;€</span><span data-cfg="p2">450</span> <small>€</small></p>
         <p class="q">uma vez, sem mensalidade</p>
         <ul>
           <li>Tudo o que está ao lado</li>
@@ -298,13 +332,9 @@ footer{padding:26px 0 40px;color:var(--fraco);font-size:14px}
 <section class="fim" id="contacto">
   <div class="env">
     <h2>Vamos falar 10 minutos?</h2>
-    <p class="sub">Diga-me o nome da sua casa e eu vou ver como está hoje no Google. Digo-lhe o que falta,
-      sem compromisso.</p>
-    <div class="btl">
-      <a class="bt bt-1" id="bt-tel" href="#">Ligar agora</a>
-      <a class="bt bt-2" id="bt-zap" href="#" target="_blank" rel="noopener">Falar por WhatsApp</a>
-      <a class="bt bt-2" id="bt-mail" href="#">Enviar email</a>
-    </div>
+    <p class="sub">Diga-me o nome da sua casa e eu vou ver como está hoje no Google.
+      Depois digo-lhe o que falta, em dois minutos de conversa. Sem compromisso e sem dossiers.</p>
+    <div class="btl" id="caixa-contacto"></div>
   </div>
 </section>
 
@@ -317,38 +347,97 @@ footer{padding:26px 0 40px;color:var(--fraco);font-size:14px}
 <script>
 /* ==================================================================
    ÚNICO SÍTIO A EDITAR. Muda estes valores e muda a página inteira.
+   Deixa em "" o que não tiveres: o botão desaparece sozinho, em vez
+   de ficar um contacto que não existe.
    ================================================================== */
 const CFG = {
-  nome:     "Nando Pereira",          // o teu nome, aparece no rodapé
-  telefone: "+351900000000",          // formato internacional, sem espaços
-  telVis:   "900 000 000",            // como queres que apareça escrito
+  nome:     "Nando Pereira",
+  telefone: "",                        // ex.: "+351912345678". Vazio = sem botão de chamada.
+  whatsapp: "",                        // ex.: "+351912345678". Vazio = sem botão de WhatsApp.
   email:    "pereiranando945@gmail.com",
+  messenger:"",                        // ex.: "https://m.me/apaginadofacebook"
   exemplo:  "https://chroniquesdupasse30-coder.github.io/pastelariagloriana/",
-  p1: "290", p2: "450", p3: "12"      // os três preços
+
+  p1: "290", p2: "450", p3: "12",      // os três preços NORMAIS
+
+  // Promoção de arranque. Para a desligar, mete ativa: false.
+  // Sobe o "feitos" à medida que fechares clientes; as vagas descem sozinhas.
+  promo: { ativa: true, total: 10, feitos: 0, p1: "190", p2: "290" }
 };
 /* ================================================================== */
 
-document.querySelectorAll("[data-cfg]").forEach(el=>{
-  const v = CFG[el.dataset.cfg]; if(v) el.textContent = v;
+const $id = id => document.getElementById(id);
+const põe = (id, v) => { const e = $id(id); if (e) e.textContent = v; };
+
+document.querySelectorAll("[data-cfg]").forEach(el => {
+  const v = CFG[el.dataset.cfg]; if (v) el.textContent = v;
 });
-const zapTxt = encodeURIComponent(
-  "Boa tarde. Vi a sua página e queria saber mais sobre o site para o meu negócio.");
-const zapUrl = "https://wa.me/" + CFG.telefone.replace(/\D/g,"") + "?text=" + zapTxt;
-const mailUrl = "mailto:" + CFG.email +
-  "?subject=" + encodeURIComponent("Queria um site para o meu negócio");
 
-document.getElementById("bt-tel").href  = "tel:" + CFG.telefone;
-document.getElementById("bt-tel").textContent = "Ligar: " + CFG.telVis;
-document.getElementById("bt-zap").href  = zapUrl;
-document.getElementById("bt-mail").href = mailUrl;
-document.getElementById("zap-topo").href = zapUrl;
-document.querySelectorAll(".zap-link").forEach(a=>{ a.href = zapUrl; a.target="_blank"; a.rel="noopener"; });
+/* ---- promoção de arranque ---- */
+const P = CFG.promo || { ativa: false };
+const restam = Math.max(0, (P.total || 0) - (P.feitos || 0));
+if (P.ativa && restam > 0) {
+  ["fp-n", "pb-n", "pb-n2", "pb-n3"].forEach(id => põe(id, P.total));
+  põe("fp-p", P.p1 + " €");
+  põe("fp-a", CFG.p1 + " €");
+  põe("fp-v", restam === 1 ? "falta 1 vaga" : "faltam " + restam);
+  põe("pb-p1", P.p1); põe("pb-p2", P.p2);
+  põe("pb-restam", restam === 1 ? "Falta 1." : "Faltam " + restam + ".");
+  $id("faixa-promo").hidden = false;
+  $id("promo-bloco").hidden = false;
+  document.querySelectorAll("[data-antes]").forEach(el => {
+    el.textContent = CFG[el.dataset.antes] + " €"; el.hidden = false;
+  });
+  CFG.p1 = P.p1; CFG.p2 = P.p2;
+  document.querySelectorAll("[data-cfg]").forEach(el => {
+    const v = CFG[el.dataset.cfg]; if (v) el.textContent = v;
+  });
+}
 
-const f = document.getElementById("demo-frame");
+/* ---- contactos: o objetivo é uma conversa, não um email longo ---- */
+const CORPO = [
+  "Boa tarde,",
+  "",
+  "Tenho o [NOME DA MINHA CASA], em [LOCALIDADE].",
+  "Pode ligar-me para falarmos? O meu número é [O MEU NÚMERO].",
+  "",
+  "Obrigado."
+].join("\n");
+const ASSUNTO = "Queria falar consigo sobre um site";
+const ZAP_TXT = "Boa tarde. Vi a sua página. Tenho o [NOME DA MINHA CASA] e queria falar sobre um site.";
+
+const canais = [];
+if (CFG.telefone)  canais.push(["Ligar: " + (CFG.telVis || CFG.telefone), "tel:" + CFG.telefone, false]);
+if (CFG.whatsapp)  canais.push(["Falar por WhatsApp",
+  "https://wa.me/" + CFG.whatsapp.replace(/\D/g, "") + "?text=" + encodeURIComponent(ZAP_TXT), true]);
+if (CFG.messenger) canais.push(["Falar por Messenger", CFG.messenger, true]);
+canais.push(["Escrever email",
+  "mailto:" + CFG.email + "?subject=" + encodeURIComponent(ASSUNTO) + "&body=" + encodeURIComponent(CORPO), false]);
+
+const cx = $id("caixa-contacto");
+cx.innerHTML = "";
+canais.forEach(([txt, href, novo], k) => {
+  const a = document.createElement("a");
+  a.className = "bt " + (k === 0 ? "bt-1" : "bt-2");
+  a.href = href; a.textContent = txt;
+  if (novo) { a.target = "_blank"; a.rel = "noopener"; }
+  cx.appendChild(a);
+});
+
+/* o botão do topo e os dos preços vão para o primeiro canal disponível */
+const principal = canais[0][1];
+const abrirNovo = canais[0][2];
+[$id("zap-topo")].concat([...document.querySelectorAll(".zap-link")]).forEach(a => {
+  if (!a) return;
+  a.href = principal;
+  if (abrirNovo) { a.target = "_blank"; a.rel = "noopener"; }
+});
+
+/* ---- exemplo e rodapé ---- */
+const f = $id("demo-frame");
 f.src = CFG.exemplo;
-document.getElementById("link-demo").href = CFG.exemplo;
-document.getElementById("url-demo").textContent = CFG.exemplo.replace(/^https?:\/\//,"").replace(/\/$/,"");
-document.getElementById("ano").textContent = new Date().getFullYear();
-document.getElementById("rodape").innerHTML =
-  "© " + new Date().getFullYear() + " " + CFG.nome + " · " + CFG.telVis + " · " + CFG.email;
+$id("link-demo").href = CFG.exemplo;
+põe("url-demo", CFG.exemplo.replace(/^https?:\/\//, "").replace(/\/$/, ""));
+$id("rodape").innerHTML = "© " + new Date().getFullYear() + " " + CFG.nome +
+  (CFG.telVis ? " · " + CFG.telVis : "") + " · " + CFG.email;
 </script>
